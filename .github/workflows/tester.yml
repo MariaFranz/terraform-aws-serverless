@@ -38,8 +38,18 @@ jobs:
       run: terraform validate
 
     - name: Terraform Plan 
+      id: plan
       run: terraform plan -input=false
 
-    - name: Terraform Apply
-      if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
-      run: terraform apply -auto-approve -input=false
+    - name: Terraform Plan Status
+      if: steps.plan.outcome == 'failure'
+      run: |
+        echo "Drift detected on this terraform workspace"
+        exit 1
+
+
+
+#    - name: Terraform Apply
+#      if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
+#      run: terraform apply -auto-approve -input=false
+
