@@ -1,7 +1,7 @@
 # Terraform-aws-serverless
 API Gateway - Lambda function - SQS - Lambda function - CloudWatch 
 
-GitHub Actions with Drift detector
+GitHub Actions with terraform drift detector
 
 
 ## Get Started 
